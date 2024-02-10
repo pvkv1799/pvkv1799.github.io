@@ -152,8 +152,8 @@
                         configuration</a>
                 </p>
             </div>
-            <div
-                style="color: var(--sl-color-primary-500); display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-end; margin-top: 2ex;">
+            <div id="logo-div"
+                style="color: var(--sl-color-primary-500); display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-end; margin-top: 2ex; cursor: pointer;">
                 <div style="font-size: xx-large; ">
                     <sl-icon name="rulers"></sl-icon>
                 </div>
@@ -163,7 +163,15 @@
                 </div>
             </div>
         </div>
+        <sl-breadcrumb>
+            <sl-breadcrumb-item href=" main.html">Home</sl-breadcrumb-item>
+            <sl-breadcrumb-item href="report.html">Report</sl-breadcrumb-item>
+        </sl-breadcrumb>
     </header>
+    <script>
+        const divLogo = document.getElementById("logo-div");
+        divLogo.addEventListener("click", event => { window.location.href = 'main.html'; });
+    </script>
     <sl-divider></sl-divider>
     <div id="summary" class="report-summary-block">
         <div class="report-summary-item">
