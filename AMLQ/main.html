@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+
+    <style>
+        .col-short-date {
+            width: 10ex;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-icon {
+            width: 2ex;
+            text-align: center;
+            margin-right: var(--sl-spacing-3x-small);
+        }
+
+        .col-percnt {
+            width: 4ex;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-last {
+            text-align: left;
+        }
+
+        .col-time-short-date {
+            width: 17ex;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        sl-button.row_button {
+            width: 100%;
+        }
+
+        sl-button.row_button::part(label) {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            font-size: var(--sl-font-size-medium);
+        }
+
+        .sl-card {
+            --padding: var(--sl-spacing-small);
+        }
+
+        .card-header [slot='header'] {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            font-size: var(--sl-font-size-large);
+        }
+
+
+        .card-footer [slot='footer'] {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+    <style>
+        .label-on-left {
+            --gap-width: 1rem;
+        }
+
+        .label-on-left+.label-on-left {
+            margin-top: var(--sl-spacing-medium);
+        }
+
+        .label-on-left::part(form-control) {
+            display: grid;
+            grid: auto / var(--label-width) 1fr;
+            gap: var(--sl-spacing-3x-small) var(--gap-width);
+            align-items: center;
+        }
+
+        .label-on-left::part(form-control-label) {
+            text-align: right;
+        }
+
+        .label-on-left::part(form-control-help-text) {
+            grid-column-start: 2;
+        }
+    </style>
+    <title>Quest TM</title>
+</head>
+
+<body style="font-family: var(--sl-font-sans);">
+    <div
+        style="color: var(--sl-color-primary-500); width: 100%; display: flex; align-items: flex-end; justify-content: right;">
+        <div style="font-size: xx-large; margin-top: 7px;">
+            <sl-icon name="rulers"></sl-icon>
+        </div>
+        <div style="margin-left: 1ex;">
+            <h2 style="margin: 0;">QUEST TM</h2>
+            <h4 style="margin: 0;">Sense & Measure</h4>
+        </div>
+    </div>
+    <sl-card id="reports" class="card-header" class="card-footer" style="width: 100%">
+        <div slot="header">
+            Reports of the Quality Evaluation
+            <sl-icon-button name="gear" label="Settings" id="button-report-settings"></sl-icon-button>
+        </div>
+        <div>
+            <sl-button class="row_button" variant="text" size="small" href="report.html">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-icon"><sl-icon name="shield-fill-check"></sl-icon></span>
+                <span class="col-percnt">95&percnt;</span>
+                <span class="col-icon"><sl-icon name="shield-x"></sl-icon></span>
+                <span class="col-percnt">85&percnt;</span>
+                <span class="col-last">Quantum Insurance TM Rigorous Test</span>
+            </sl-button>
+        </div>
+        <div>
+            <sl-button class="row_button" variant="text" size="small" href="report.html">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" date="2023-10-24T10:18:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-icon"><sl-icon name="shield-fill-check"></sl-icon></span>
+                <span class="col-percnt">2&percnt;</span>
+                <span class="col-icon"><sl-icon name="shield-x"></sl-icon></span>
+                <span class="col-percnt">82&percnt;</span>
+                <span class="col-last">Quantum Insurance TM Rapid Test</span>
+            </sl-button>
+        </div>
+        <div>
+            <sl-button class="row_button" variant="text" size="small" href="report.html">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" date="2023-10-25T11:19:03-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-icon"><sl-icon name="shield-fill-check"></sl-icon></span>
+                <span class="col-percnt">9&percnt;</span>
+                <span class="col-icon"><sl-icon name="shield-x"></sl-icon></span>
+                <span class="col-percnt">8&percnt;</span>
+                <span class="col-last">Apex Insurance TM Rigorous Test</span>
+            </sl-button>
+        </div>
+        <div>
+            <sl-button class="row_button" variant="text" size="small" href="report.html">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" date="2023-10-26T12:20:03-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-icon"><sl-icon name="shield-fill-check"></sl-icon></span>
+                <span class="col-percnt">97&percnt;</span>
+                <span class="col-icon"><sl-icon name="shield-x"></sl-icon></span>
+                <span class="col-percnt">87&percnt;</span>
+                <span class="col-last">Apex Insurance TM Rapid Test</span>
+            </sl-button>
+        </div>
+        <div slot="footer">
+            <div style="display: flex; flex-wrap: wrap;">
+                <sl-input class="label-on-left" label="Upload new detection results for evaluation"
+                    help-text="File with the detection results" clearable>
+                    <sl-icon-button name="three-dots" slot="suffix"></sl-icon-button>
+                </sl-input>
+                <sl-icon-button name="file-earmark-arrow-up" style="font-size: xx-large;"
+                    label="Upload new detection results for evaluation" id="button-upload-results"></sl-icon-button>
+            </div>
+        </div>
+    </sl-card>
+    <br /><br />
+    <sl-card id="datasets" class="card-header" class="card-footer" style="width: 100%">
+        <div slot="header">
+            Datasets for the Evaluation
+            <sl-icon-button name="gear" label="Settings" id="button-datasets-settings"></sl-icon-button>
+        </div>
+        <sl-button class="row_button" variant="text" size="small" href="evaluation_input_dataset.zip">
+            <span class="col-time-short-date">
+                <sl-format-date day="numeric" month="short" year="numeric" hour="2-digit" hour-format="24"
+                    minute="2-digit" date="2023-10-23T04:11:00-04:00">
+                </sl-format-date>
+            </span>
+            <span class="col-last">Rigorous testing for the Quantum Insurance</span>
+        </sl-button>
+        <sl-button class="row_button" variant="text" size="small" href="evaluation_input_dataset.zip">
+            <span class="col-time-short-date">
+                <sl-format-date day="numeric" month="short" year="numeric" hour="2-digit" hour-format="24"
+                    minute="2-digit" date="2024-10-23T09:17:00-04:00">
+                </sl-format-date>
+            </span>
+            <span class="col-last">Rapid testing for the Apex Insurance</span>
+        </sl-button>
+        <!-- 
+        <div slot="footer">
+            <sl-button href="gen_dataset.html">
+                <sl-icon slot="prefix" name="plus-circle-dotted"></sl-icon>
+                Generate new dataset
+            </sl-button>
+        </div>
+        -->
+    </sl-card>
+    <br /><br />
+    <sl-card id="configs" class="card-header" class="card-footer" style="width: 100%">
+        <div slot="header">
+            Configurations of the Evaluation
+            <sl-icon-button name="gear" label="Settings" id="button-configs-settings"></sl-icon-button>
+        </div>
+        <div style="display: flex;">
+            <sl-button id="gen-btn-1" variant="default" size="small">
+                <sl-icon slot="prefix" name="file-earmark-arrow-down"></sl-icon>
+                Generate dataset
+            </sl-button>
+            <sl-button class="row_button" variant="text" size="small" href="config.html">
+                <span class="col-time-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" hour="2-digit" hour-format="24"
+                        minute="2-digit" date="2023-10-22T08:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-last">Rigorous testing (all typologies)</span>
+            </sl-button>
+
+        </div>
+        <div style="display: flex;">
+            <sl-button id="gen-btn-2" variant="default" size="small">
+                <sl-icon slot="prefix" name="file-earmark-arrow-down"></sl-icon>
+                Generate dataset
+            </sl-button>
+
+            <sl-button class="row_button" variant="text" size="small" href="config.html">
+                <span class="col-time-short-date">
+                    <sl-format-date day="numeric" month="short" year="numeric" hour="2-digit" hour-format="24"
+                        minute="2-digit" date="2024-10-22T10:31:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-last">Quick testing (minimal required typologies)</span>
+            </sl-button>
+        </div>
+        <div slot="footer">
+            <sl-button href="config.html">
+                <sl-icon slot="prefix" name="plus-circle-dotted"></sl-icon>
+                Add new configuration
+            </sl-button>
+        </div>
+    </sl-card>
+    <sl-dialog label="Reports Display Settings" id="dlg-reports-settings" class="dialog-overview">
+        <sl-input label="Max display lines" size="small" value="10" type="number" inputmode="numeric" min="1" step="1"
+            autofocus="true"></sl-input>
+        <div slot="footer">
+            <sl-button id="btn-report-sts-save" type="primary">Save</sl-button>
+            <sl-button id="btn-report-sts-cancel" type="default">Cancel</sl-button>
+        </div>
+    </sl-dialog>
+    <script>
+        const dialogReportsSettings = document.getElementById("dlg-reports-settings");
+        const buttonReportsSettings = document.getElementById("button-report-settings");
+        const buttonReportsSettingsSave = document.getElementById("btn-report-sts-save");
+        const buttonReportsSettingsCancel = document.getElementById("btn-report-sts-cancel");
+
+        buttonReportsSettings.addEventListener("click", event => { dialogReportsSettings.show(); });
+        buttonReportsSettingsSave.addEventListener("click", event => { dialogReportsSettings.hide(); });
+        buttonReportsSettingsCancel.addEventListener("click", event => { dialogReportsSettings.hide(); });
+    </script>
+    <sl-dialog label="Datasets Display Settings" id="dlg-datasets-settings" class="dialog-overview">
+        <sl-input label="Max display lines" size="small" value="10" type="number" inputmode="numeric" min="1" step="1"
+            autofocus="true"></sl-input>
+        <div slot="footer">
+            <sl-button id="btn-datasets-sts-save" type="primary">Save</sl-button>
+            <sl-button id="btn-datasets-sts-cancel" type="default">Cancel</sl-button>
+        </div>
+    </sl-dialog>
+    <script>
+        const dialogDatasetsSettings = document.getElementById("dlg-datasets-settings");
+        const buttonDatasetsSettings = document.getElementById("button-datasets-settings");
+        const buttonDatasetsSettingsSave = document.getElementById("btn-datasets-sts-save");
+        const buttonRDatasetsSettingsCancel = document.getElementById("btn-datasets-sts-cancel");
+
+        buttonDatasetsSettings.addEventListener("click", event => { dialogDatasetsSettings.show(); });
+        buttonDatasetsSettingsSave.addEventListener("click", event => { dialogDatasetsSettings.hide(); });
+        buttonRDatasetsSettingsCancel.addEventListener("click", event => { dialogDatasetsSettings.hide(); });
+    </script>
+    <sl-dialog label="Configurations Display Settings" id="dlg-configs-settings" class="dialog-overview">
+        <sl-input label="Max display lines" size="small" value="10" type="number" inputmode="numeric" min="1" step="1"
+            autofocus="true"></sl-input>
+        <div slot="footer">
+            <sl-button id="btn-configs-sts-save" type="primary">Save</sl-button>
+            <sl-button id="btn-configs-sts-cancel" type="default">Cancel</sl-button>
+        </div>
+    </sl-dialog>
+    <script>
+        const dialogConfigsSettings = document.getElementById("dlg-configs-settings");
+        const buttonConfigsSettings = document.getElementById("button-configs-settings");
+        const buttonConfigsSettingsSave = document.getElementById("btn-configs-sts-save");
+        const buttonConfigsSettingsCancel = document.getElementById("btn-configs-sts-cancel");
+
+        buttonConfigsSettings.addEventListener("click", event => { dialogConfigsSettings.show(); });
+        buttonConfigsSettingsSave.addEventListener("click", event => { dialogConfigsSettings.hide(); });
+        buttonConfigsSettingsCancel.addEventListener("click", event => { dialogConfigsSettings.hide(); });
+    </script>
+    <sl-dialog label="Confirm Dataset Generation" id="dlg-generate" class="dialog-overview">
+        <div style="display: flex;  align-items: center;">
+            <div style="font-size: 32px; margin-right: 10px;">
+                <sl-icon name="question-circle"></sl-icon>
+            </div>
+            <p>Dataset generation takes some time. Please confirm creating the new dataset using the selected
+                configuration.
+            </p>
+        </div>
+        <div slot="footer">
+            <sl-button id="btn-generate" type="primary">Generate</sl-button>
+            <sl-button id="btn-cancel" type="default">Cancel</sl-button>
+        </div>
+    </sl-dialog>
+    <sl-dialog label="Dataset Generation Started" id="dlg-started" class="dialog-overview">
+        <div style="display: flex;  align-items: center;">
+            <div style="font-size: 32px; margin-right: 10px;">
+                <sl-icon name="info-circle"></sl-icon>
+            </div>
+            <p>Dataset generation started. When ready, the new dataset will appear the Datasets for the Evaluation list.
+            </p>
+        </div>
+        <div slot="footer">
+            <sl-button id="btn-close" type="primary">Close</sl-button>
+        </div>
+    </sl-dialog>
+    <script>
+        const dialogGenerate = document.getElementById("dlg-generate");
+        const generateButton = document.getElementById("btn-generate");
+        const buttonCancel = document.getElementById("btn-cancel");
+        const dialogStarted = document.getElementById("dlg-started");
+        const buttonClose = document.getElementById("btn-close");
+
+        generateButton.addEventListener("click", event => {
+            buttonCancel.disabled = true;
+            event.target.loading = true;
+            // simulate sending a request to the server
+            setTimeout(() => {
+                // 2 second delay here before running next line
+                event.target.loading = false;
+                dialogGenerate.hide();
+                dialogStarted.show();
+            }, 2000)
+
+        });
+        buttonCancel.addEventListener("click", event => {
+            dialogGenerate.hide();
+        });
+        buttonClose.addEventListener("click", event => {
+            dialogStarted.hide();
+        });
+        document.getElementById("gen-btn-1").addEventListener("click", event => {
+            buttonCancel.disabled = false;
+            dialogGenerate.show();
+        });
+        document.getElementById("gen-btn-2").addEventListener("click", event => {
+            buttonCancel.disabled = false;
+            dialogGenerate.show();
+        });
+    </script>
+    <sl-dialog label="Results Processing Started" id="dlg-proc-started" class="dialog-overview">
+        <div style="display: flex;  align-items: center;">
+            <div style="font-size: 32px; margin-right: 10px;">
+                <sl-icon name="info-circle"></sl-icon>
+            </div>
+            <p>File with the detection results uploaded and its processing started. When ready, the new evaluation
+                report will appear the Reports of the Quality Evaluation list.
+            </p>
+        </div>
+        <div slot="footer">
+            <sl-button id="btn-proc-close" type="primary">Close</sl-button>
+        </div>
+    </sl-dialog>
+    <script>
+        const buttonUploadResults = document.getElementById("button-upload-results");
+        const dialogProcStarted = document.getElementById("dlg-proc-started");
+        const buttonCloseProc = document.getElementById("btn-proc-close");
+        buttonUploadResults.addEventListener("click", event => {
+            document.body.style.cursor = 'progress';
+            //event.target.loading = true;
+            // simulate sending a request to the server
+            setTimeout(() => {
+                // 2 second delay here before running next line
+                //event.target.loading = false;
+                document.body.style.cursor = 'default';
+                dialogProcStarted.show();
+            }, 2000)
+            buttonCloseProc.addEventListener("click", event => {
+                dialogProcStarted.hide();
+            });
+        });
+    </script>
+</body>
+
+</html>

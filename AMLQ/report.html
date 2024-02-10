@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+    <!--
+        https://www.w3.org/TR/css-values-4/#font-relative-lengths 
+        ch - Represents the typical advance measure of European alphanumeric characters, and measured as the used advance measure of the “0” (ZERO, U+0030) glyph in the font used to render it. (The advance measure of a glyph is its advance width or height, whichever is in the inline axis of the element.)
+        In the cases where it is impossible or impractical to determine the measure of the “0” glyph, it must be assumed to be 0.5em wide by 1em tall. Thus, the ch unit falls back to 0.5em in the general case, and to 1em when it would be typeset upright (i.e. writing-mode is vertical-rl or vertical-lr and text-orientation is upright).
+
+        ==> to unify columns width (and simulate a table behavior inside a button) calculating width in rem ~ number of chars / 2
+    -->
+
+    <style>
+        h1 {
+            font-weight: normal;
+        }
+
+        h2 {
+            font-weight: normal;
+            margin-bottom: var(--sl-spacing-3x-small);
+        }
+
+        h3 {
+            font-weight: normal;
+            margin-bottom: var(--sl-spacing-3x-small);
+        }
+
+        body {
+            font-family: var(--sl-font-sans);
+        }
+
+        .report-summary-block {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .report-summary-item {
+            display: inline;
+            margin-left: var(--sl-spacing-medium);
+        }
+
+        .report-summary-detail {
+            margin-top: var(--sl-spacing--small);
+            margin-left: 2em;
+        }
+
+        .report-row {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .col-name {
+            width: 8rem;
+            text-align: left;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-percnt {
+            width: 3rem;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-nn {
+            width: 3rem;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-percnt-icon {
+            width: 3rem;
+            text-align: center;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-num-long {
+            width: 5rem;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-num-long3x {
+            width: calc(3 * 5rem + 2 * var(--sl-spacing-small));
+            text-align: center;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-num-short {
+            width: 2rem;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-num-short3x {
+            width: calc(3 * 2rem + 2 * var(--sl-spacing-small));
+            text-align: center;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-short-date {
+            width: 10ex;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-short-date4x {
+            width: calc(4 * 10ex + 3 * var(--sl-spacing-small));
+            text-align: center;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        .col-num-num {
+            width: 12rem;
+            text-align: right;
+            margin-right: var(--sl-spacing-small);
+        }
+
+        sl-button.row_button {
+            width: 100%;
+        }
+
+        sl-button.row_button::part(label) {
+            width: 100%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+            font-size: var(--sl-font-size-medium);
+        }
+    </style>
+    <title>Quantum Insurance TM Rigorous Test</title>
+</head>
+
+<body>
+    <header>
+        <div style="display: flex; width: 100%; justify-content: left">
+            <div>
+                <h1>Quantum Insurance TM Rigorous Test</h1>
+                <p>Generated on <sl-format-date day="numeric" month="short" year="numeric" hour="2-digit"
+                        hour-format="24" minute="2-digit" date="2023-10-23T09:17:00-04:00"> </sl-format-date> from the
+                    <a href="evaluation_output_results.zip">results data file</a> using <a href="config.html">Regiorous
+                        Testing
+                        configuration</a>
+                </p>
+            </div>
+            <div
+                style="color: var(--sl-color-primary-500); display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-end; margin-top: 2ex;">
+                <div style="font-size: xx-large; ">
+                    <sl-icon name="rulers"></sl-icon>
+                </div>
+                <div style="margin-left: 1ex;">
+                    <h2 style="margin: 0;">QUEST TM</h2>
+                    <h4 style="margin: 0;">Sense & Measure</h4>
+                </div>
+            </div>
+        </div>
+    </header>
+    <sl-divider></sl-divider>
+    <div id="summary" class="report-summary-block">
+        <div class="report-summary-item">
+            <h2><sl-icon style="color: var(--sl-color-success-100)" name="shield-fill-check"></sl-icon> 95% score for
+                true-positives</h2>
+            <p class="report-summary-detail">47 issues detected out of 50 expected</p>
+        </div>
+        <div class="report-summary-item">
+            <h2><sl-icon style="color: var(--sl-color-warning-500)" name="shield-x"></sl-icon>
+                85% score for false-positives</h2>
+            <p class="report-summary-detail">8 false positive issues reported out of 55 total</p>
+        </div>
+    </div>
+    <sl-divider></sl-divider>
+    <div id="detail-rollup" style="display: flex; flex-wrap: wrap;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; ">
+            <h3 class="report-row">
+                <!-- !TODO: remove the below adjustment for the padding of the label inside the sl-button-->
+                <span style="padding: 6px;"> </span>
+                <span class="col-name">
+                    Typology
+                </span>
+                <span class="col-percnt-icon">
+                    <sl-tooltip content="Ratio of the True Positives">
+                        <sl-icon name="shield-fill-check"></sl-icon>
+                    </sl-tooltip>
+                </span>
+                <span class="col-percnt">
+                    <sl-tooltip content="Ratio of the False Positives">
+                        <sl-icon name="shield-fill-x"></sl-icon>
+                    </sl-tooltip>
+                </span>
+            </h3>
+        </div>
+        <div>
+            <h3 class="report-row">
+                <span class="col-num-long3x">
+                    Cases
+                </span>
+            </h3>
+            <h4 class="report-row" style="margin: 0; font-weight: normal;">
+                <span class="col-num-long">
+                    True
+                </span>
+                <span class="col-num-long">
+                    False
+                </span>
+                <span class="col-num-long">
+                    Expected
+                </span>
+            </h4>
+        </div>
+        <sl-button class="row_button" variant="text" size="small" href="#topo-structuring" open="true">
+            <div style="display: flex; flex-wrap: wrap;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-name">Structuring</span>
+                    <span class="col-percnt">100&percnt;</span>
+                    <span class="col-percnt">85&percnt;</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-num-long">
+                        <sl-format-number value="10" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="2" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="10" maximum-fraction-digits="0">
+                    </span>
+                </div>
+            </div>
+        </sl-button>
+        <sl-button class="row_button" variant="text" size="small" href="#topo-flow-through">
+            <div style="display: flex; flex-wrap: wrap;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-name">Flow-through</span>
+                    <span class="col-percnt">1&percnt;</span>
+                    <span class="col-percnt">99&percnt;</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-num-long">
+                        <sl-format-number value="333" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="923456789" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="987654321" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                </div>
+            </div>
+        </sl-button>
+        <sl-button class="row_button" variant="text" size="small" href="#topo-early-surrender">
+            <div style="display: flex; flex-wrap: wrap;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-name">Early Surrender</span>
+                    <span class="col-percnt">30&percnt;</span>
+                    <span class="col-percnt">5&percnt;</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-num-long">
+                        <sl-format-number value="33333" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="5555" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="100000" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                </div>
+            </div>
+        </sl-button>
+        <sl-button class="row_button" variant="text" size="small" href="#topo-large-cash">
+            <div style="display: flex; flex-wrap: wrap;">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-name">Large Cash Amount</span>
+                    <span class="col-percnt">77&percnt;</span>
+                    <span class="col-percnt">35&percnt;</span>
+                </div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <span class="col-num-long">
+                        <sl-format-number value="7777777" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="2262963" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                    <span class="col-num-long">
+                        <sl-format-number value="99999999" maximum-fraction-digits="0">
+                        </sl-format-number>
+                    </span>
+                </div>
+            </div>
+        </sl-button>
+    </div>
+    <sl-divider></sl-divider>
+    <sl-details summary="Structuring Typologies" id="topo-structuring" open="true">
+        <div style="display: flex; flex-wrap: wrap; padding: 0;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; ">
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-nn">Case #</span>
+                    <span class="col-percnt">Score</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal; ">
+                    <span class="col-num-short3x">Transaction Qty</span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-num-short">Hit </span>
+                    <span class="col-num-short">Miss</span>
+                    <span class="col-num-short">Extra</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date4x">
+                        Transaction Dates (Expected vs. Detected)
+                    </span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date">
+                        First Exp.
+                    </span>
+                    <span class="col-short-date">
+                        First Det.
+                    </span>
+                    <span class="col-short-date">
+                        Last Exp.
+                    </span>
+                    <span class="col-short-date">
+                        Last Det.
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">1</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">33</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">0</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">2</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">99</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">3</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-09-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-11-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">3</span>
+                <span class="col-percnt">98%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">4</span>
+                <span class="col-percnt">97%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">5</span>
+                <span class="col-percnt">96%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">6</span>
+                <span class="col-percnt">95%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">7</span>
+                <span class="col-percnt">94%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">8</span>
+                <span class="col-percnt">93%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">9</span>
+                <span class="col-percnt">92%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">10</span>
+                <span class="col-percnt">91%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+    </sl-details>
+    <sl-details summary="Flow-Trough Typologies" id="topo-flow-through" open="true">
+        <div style="display: flex; flex-wrap: wrap; padding: 0;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; ">
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-nn">Case #</span>
+                    <span class="col-percnt">Score</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal; ">
+                    <span class="col-num-short3x">Transaction Qty</span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-num-short">Hit </span>
+                    <span class="col-num-short">Miss</span>
+                    <span class="col-num-short">Extra</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date4x">
+                        Transaction Dates (Expected vs. Detected)
+                    </span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date">
+                        First Exp.
+                    </span>
+                    <span class="col-short-date">
+                        First Det.
+                    </span>
+                    <span class="col-short-date">
+                        Last Exp.
+                    </span>
+                    <span class="col-short-date">
+                        Last Det.
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">1</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">33</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">0</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">2</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">99</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">3</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-09-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-11-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">3</span>
+                <span class="col-percnt">98%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">4</span>
+                <span class="col-percnt">97%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">5</span>
+                <span class="col-percnt">96%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">6</span>
+                <span class="col-percnt">95%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">7</span>
+                <span class="col-percnt">94%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">8</span>
+                <span class="col-percnt">93%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">9</span>
+                <span class="col-percnt">92%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">10</span>
+                <span class="col-percnt">91%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+    </sl-details>
+    <sl-details summary="Early Surrender Typologies" id="topo-early-surrender" open="true">
+        <div style="display: flex; flex-wrap: wrap; padding: 0;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; ">
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-nn">Case #</span>
+                    <span class="col-percnt">Score</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal; ">
+                    <span class="col-num-short3x">Transaction Qty</span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-num-short">Hit </span>
+                    <span class="col-num-short">Miss</span>
+                    <span class="col-num-short">Extra</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date4x">
+                        Transaction Dates (Expected vs. Detected)
+                    </span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date">
+                        First Exp.
+                    </span>
+                    <span class="col-short-date">
+                        First Det.
+                    </span>
+                    <span class="col-short-date">
+                        Last Exp.
+                    </span>
+                    <span class="col-short-date">
+                        Last Det.
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">1</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">33</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">0</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">2</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">99</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">3</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-09-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-11-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">3</span>
+                <span class="col-percnt">98%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">4</span>
+                <span class="col-percnt">97%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">5</span>
+                <span class="col-percnt">96%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">6</span>
+                <span class="col-percnt">95%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">7</span>
+                <span class="col-percnt">94%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">8</span>
+                <span class="col-percnt">93%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">9</span>
+                <span class="col-percnt">92%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">10</span>
+                <span class="col-percnt">91%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+    </sl-details>
+    <sl-details summary="Large Cash Amount Typologies" id="topo-large-cash" open="true">
+        <div style="display: flex; flex-wrap: wrap; padding: 0;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; ">
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-nn">Case #</span>
+                    <span class="col-percnt">Score</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal; ">
+                    <span class="col-num-short3x">Transaction Qty</span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-num-short">Hit </span>
+                    <span class="col-num-short">Miss</span>
+                    <span class="col-num-short">Extra</span>
+                </p>
+            </div>
+            <div>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date4x">
+                        Transaction Dates (Expected vs. Detected)
+                    </span>
+                </p>
+                <p class="report-row" style="margin: 0; font-weight: normal;">
+                    <span class="col-short-date">
+                        First Exp.
+                    </span>
+                    <span class="col-short-date">
+                        First Det.
+                    </span>
+                    <span class="col-short-date">
+                        Last Exp.
+                    </span>
+                    <span class="col-short-date">
+                        Last Det.
+                    </span>
+                </p>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">1</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">33</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">0</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-01-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-10-23T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">2</span>
+                <span class="col-percnt">100%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">99</span>
+                <span class="col-num-short">0</span>
+                <span class="col-num-short">3</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-03-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-09-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-11-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">3</span>
+                <span class="col-percnt">98%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">4</span>
+                <span class="col-percnt">97%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">5</span>
+                <span class="col-percnt">96%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">6</span>
+                <span class="col-percnt">95%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">7</span>
+                <span class="col-percnt">94%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">8</span>
+                <span class="col-percnt">93%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">9</span>
+                <span class="col-percnt">92%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+        <div style="width: 100%;display: flex; justify-content: flex-start; margin: 0; flex-wrap: wrap;">
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-nn">10</span>
+                <span class="col-percnt">91%</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-num-short">50</span>
+                <span class="col-num-short">1</span>
+                <span class="col-num-short">2</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-05-01T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2022-03-11T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-05-12T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+                <span class="col-short-date">
+                    <sl-format-date day="numeric" month="2-digit" year="numeric" date="2023-07-08T09:17:00-04:00">
+                    </sl-format-date>
+                </span>
+            </div>
+        </div>
+    </sl-details>
+</body>
+
+</html>

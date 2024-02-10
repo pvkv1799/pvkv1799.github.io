@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" media="(prefers-color-scheme:light)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
+    <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+        href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css"
+        onload="document.documentElement.classList.add('sl-theme-dark');" />
+    <script type="module"
+        src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+
+    <title>Configure Test Quest TM</title>
+    <style>
+        .sl-card {
+            --padding: var(--sl-spacing-small);
+        }
+
+        .card-header [slot='header'] {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0;
+            font-size: var(--sl-font-size-large);
+        }
+
+        .card-footer [slot='footer'] {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+    <style>
+        .label-on-left {
+            --label-width: 15rem;
+            --gap-width: 1rem;
+        }
+
+        .label-on-left+.label-on-left {
+            margin-top: var(--sl-spacing-medium);
+        }
+
+        .label-on-left::part(form-control) {
+            display: grid;
+            grid: auto / var(--label-width) 1fr;
+            gap: var(--sl-spacing-3x-small) var(--gap-width);
+            align-items: center;
+        }
+
+        .label-on-left::part(form-control-label) {
+            text-align: right;
+        }
+
+        .label-on-left::part(form-control-help-text) {
+            grid-column-start: 2;
+        }
+    </style>
+    <style>
+        .label-on-left-in {
+            --label-width: 12rem;
+            --gap-width: 1rem;
+        }
+
+        .label-on-left-in+.label-on-left-in {
+            margin-top: var(--sl-spacing-medium);
+        }
+
+        .label-on-left-in::part(form-control) {
+            display: grid;
+            grid: auto / var(--label-width) 1fr;
+            gap: var(--sl-spacing-3x-small) var(--gap-width);
+            align-items: center;
+        }
+
+        .label-on-left-in::part(form-control-label) {
+            text-align: right;
+        }
+
+        .label-on-left-in::part(form-control-help-text) {
+            grid-column-start: 2;
+        }
+    </style>
+</head>
+
+<body style="font-family: var(--sl-font-sans);">
+    <header>
+        <div style="display: flex; justify-content: left">
+            <div style="flex: auto">
+                <sl-input size="large" value="Rigorous Testing (all topologies)"
+                    placeholder="Enter name of the test configuration"
+                    help-text="Last saved Oct 23, 2023, 15:17 by Sam Gamgee" autocorrect="on" spellcheck="true">
+                </sl-input>
+            </div>
+            <div
+                style="color: var(--sl-color-primary-500); display: flex; flex-wrap: nowrap; align-items: flex-start; justify-content: flex-end; margin-left: 3ex; ">
+                <div style="font-size: xx-large; ">
+                    <sl-icon name="rulers"></sl-icon>
+                </div>
+                <div style="margin-left: 1ex;">
+                    <h2 style="margin: 0;">QUEST TM</h2>
+                    <h4 style="margin: 0;">Sense & Measure</h4>
+                </div>
+            </div>
+        </div>
+    </header>
+    <sl-divider></sl-divider>
+    <div>
+        <div style="display: flex; justify-content: left;">
+            <sl-details id="glb-details" summary="Evaluation parameters" open>
+                <sl-input class="label-on-left" label="Total transactions" size="small" value="1000" type="number"
+                    inputmode="numeric" min="1" step="100" clearable autofocus="true"></sl-input>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left" style="margin-top: var(--sl-spacing-medium);"
+                        label="Transaction amount from (Min)" size="small" value="100" type="number" inputmode="numeric"
+                        min="1" step="100" clearable></sl-input>
+                    <sl-input class="label-on-left" label="to (Max)" size="small" value="50000" type="number"
+                        inputmode="numeric" min="1" step="100" clearable></sl-input>
+                </div>
+                <sl-select class="label-on-left" style="margin-top: var(--sl-spacing-medium);" label="Currencies"
+                    value="EUR" multiple>
+                    <sl-option value="EUR">EUR</sl-option>
+                    <sl-option value="USD">USD</sl-option>
+                </sl-select>
+                <sl-input class="label-on-left" label="Currency rates" size="small" value="1.1" type="number"
+                    inputmode="numeric" min="0" step="0.1"></sl-input>
+            </sl-details>
+        </div>
+        <!-- Hacky with id names to simplify the event handling -->
+        <div style="display: flex; justify-content: left;">
+            <sl-switch id="str-sw" checked="true" style="margin-top: 2ex;"></sl-switch>
+            <sl-details id="str-swbl-details" summary="Structuring Typologies" open>
+                <sl-input class="label-on-left-in" label="Number of issues" size="small" value="10" type="number"
+                    inputmode="numeric" min="1" step="1" clearable autofocus="true"></sl-input>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Issue value from (Min)" size="small" value="10000" type="number" inputmode="numeric"
+                        min="1" step="100" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="to (Max)" size="small" value="50000" type="number"
+                        inputmode="numeric" min="1" step="100" clearable></sl-input>
+                </div>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Min transactions in an issue" size="small" value="1" type="number" inputmode="numeric"
+                        min="1" step="10" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="Max" size="small" value="10" type="number"
+                        inputmode="numeric" min="1" step="1" clearable></sl-input>
+                </div>
+            </sl-details>
+        </div>
+        <div style="display: flex; justify-content: left;">
+            <sl-switch id="flt-sw" checked="true" style="margin-top: 2ex;"></sl-switch>
+            <sl-details id="flt-swbl-details" summary="Flow-through typologies" open>
+                <sl-input class="label-on-left-in" label="Number of issues" size="small" value="10" type="number"
+                    inputmode="numeric" min="1" step="1" clearable autofocus="true"></sl-input>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Issue value from (Min)" size="small" value="10000" type="number" inputmode="numeric"
+                        min="1" step="100" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="to (Max)" size="small" value="50000" type="number"
+                        inputmode="numeric" min="1" step="100" clearable></sl-input>
+                </div>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Min transactions in an issue" size="small" value="1" type="number" inputmode="numeric"
+                        min="1" step="10" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="Max" size="small" value="10" type="number"
+                        inputmode="numeric" min="1" step="1" clearable></sl-input>
+                </div>
+            </sl-details>
+        </div>
+        <div style="display: flex; justify-content: left;">
+            <sl-switch id="eas-sw" checked="true" style="margin-top: 2ex;"></sl-switch>
+            <sl-details id="eas-swbl-details" summary="Early Surrender Typologies" open>
+                <sl-input class="label-on-left-in" label="Number of issues" size="small" value="10" type="number"
+                    inputmode="numeric" min="1" step="1" clearable autofocus="true"></sl-input>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Issue value from (Min)" size="small" value="10000" type="number" inputmode="numeric"
+                        min="1" step="100" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="to (Max)" size="small" value="50000" type="number"
+                        inputmode="numeric" min="1" step="100" clearable></sl-input>
+                </div>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Min transactions in an issue" size="small" value="1" type="number" inputmode="numeric"
+                        min="1" step="10" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="Max" size="small" value="10" type="number"
+                        inputmode="numeric" min="1" step="1" clearable></sl-input>
+                </div>
+            </sl-details>
+        </div>
+        <div style="display: flex; justify-content: left;">
+            <sl-switch id="lca-sw" checked="true" style="margin-top: 2ex;"></sl-switch>
+            <sl-details id="lca-swbl-details" summary="Large Cash Amount Typologies" open open>
+                <sl-input class="label-on-left-in" label="Number of issues" size="small" value="10" type="number"
+                    inputmode="numeric" min="1" step="1" clearable autofocus="true"></sl-input>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Issue value from (Min)" size="small" value="10000" type="number" inputmode="numeric"
+                        min="1" step="100" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="to (Max)" size="small" value="50000" type="number"
+                        inputmode="numeric" min="1" step="100" clearable></sl-input>
+                </div>
+                <div style="display: flex;">
+                    <sl-input class="label-on-left-in" style="margin-top: var(--sl-spacing-medium);"
+                        label="Min transactions in an issue" size="small" value="1" type="number" inputmode="numeric"
+                        min="1" step="10" clearable></sl-input>
+                    <sl-input class="label-on-left-in" label="Max" size="small" value="10" type="number"
+                        inputmode="numeric" min="1" step="1" clearable></sl-input>
+                </div>
+            </sl-details>
+        </div>
+    </div>
+
+    <script>
+        const sws = document.querySelectorAll("sl-switch");
+        sws.forEach(sw => {
+            const dtid = "#" + sw.id + "bl-details";
+            //console.log(dtid);
+            const dt = document.querySelector(dtid);
+            sw.addEventListener('sl-change', event => {
+                dt.disabled = !sw.checked;
+                dt.open = sw.checked;
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

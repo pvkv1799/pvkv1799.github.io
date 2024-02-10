@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/light.css" />
+  <link rel="stylesheet" media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');" />
+  <script type="module"
+    src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.9.0/cdn/shoelace-autoloader.js"></script>
+
+  <title>Sign in Quest TM</title>
+  <style>
+    .card-header [slot='header'] {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      margin: 0;
+      font-size: var(--sl-font-size-large);
+    }
+  </style>
+</head>
+
+<body style="font-family: var(--sl-font-sans); width: var(--sl-spacing-medium); height: var(--sl-spacing-medium)">
+
+  <sl-card class="card-header"
+    style="width: 55ex; height: 30ex; position: absolute; margin: auto; left: 0; right: 0; top: 0; bottom: 0;">
+    <div slot="header" style="color: var(--sl-color-primary-500);">
+      <div style="font-size: xx-large; margin-top: 7px;">
+        <sl-icon name="rulers"></sl-icon>
+      </div>
+      <div style="margin-left: 1ex;">
+        <h2 style="margin: 0;">QUEST TM</h2>
+        <h4 style="margin: 0;">Sense & Measure</h4>
+      </div>
+    </div>
+    <sl-input label="User name" placeholder="User name" clearable></sl-input>
+    <br />
+    <sl-input label="Password" type="password" placeholder="Password" password-toggle clearable></sl-input>
+    <br />
+    <div style="width: 100%; display: flex; align-items: flex-end; justify-content: flex-end;">
+      <sl-button outline>Sign in</sl-button>
+    </div>
+  </sl-card>
+  <script>
+    const btn = document.querySelector('sl-button');
+    function doSignin(event) {
+      btn.variant = 'primary';
+      btn.loading = true;
+      // Simulate server response delay
+      setTimeout(() => {
+        btn.loading = false;
+        window.location.href = 'main.html';
+      }, 2000)
+
+    }
+    btn.addEventListener('click', event => {
+      doSignin(event);
+    });
+  </script>
+</body>
+
+</html>
