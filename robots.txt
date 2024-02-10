@@ -1,0 +1,9 @@
+# Block all
+User-agent: *
+Disallow: /
+
+# AdsBot crawlers must be named explicitly
+User-agent: AdsBot-Google
+Disallow: /
+
+
