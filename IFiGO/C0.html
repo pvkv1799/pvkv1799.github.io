@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Improve Fast In Go - Milton Bradley</title>
+    <link rel="stylesheet" href="improve.css">
+</head>
+
+<body>
+    <header>
+        <h1>Improve <i>Fast</i> In Go</h1>
+        <b>© Milton N. Bradley 2008</b>
+    </header>
+    <hr>
+    <nav>
+        <a>&lt; Prev</a>
+        <a href="index.html">Contents</a>
+        <a href="C1.html">Next &gt;</a>
+    </nav>
+    <hr>
+
+    <main>
+        <article>
+            <h2>Introduction</h2>
+            <h3>About This Book's On-Line Publication</h3>
+            <p>
+                The on line publication of this book provides two quite extraordinary assets:
+            </p>
+            <ul>
+                <li>
+                    It's FREE.
+                </li>
+                <li>
+                    It's perfectable!
+                </li>
+            </ul>
+            <p>
+                A printed book is fixed in form and content, and remains essentially immutable from the moment of its
+                publication. So except for the inclusion of a separate list of errata or the subsequent issue of a
+                second
+                edition, any errors of omission or commission it contains remain unchanged forever. In sharp contrast,
+                whatever flaws this on line publication possesses can be readily corrected, if only you, the reader, are
+                kind enough to communicate your perceptions to me.
+            </p>
+            <p>
+                If anything substantive has been omitted, it can be added. If anything
+                is unworthy of inclusion, it can be excised. If I got anything wrong,
+                including typos and diagrammatic and/or commentary errors, it can be
+                corrected. If more or better examples are needed, they can be provided.
+                And if anything is insufficiently clear, it can be clarified. All that's
+                necessary to achieve a “perfect” presentation is for the reader to
+                provide me with the appropriate positive feedback.
+                Just click the link below or at the end of any chapter, and send me an
+                email detailing the problems you perceive, and - this is most important -
+                specifics of exactly what you suggest as their correction. This is not
+                quite like Wikipedia, where the reader can directly modify the
+                presentation, but it's close.
+            </p>
+            <p>
+                In order for this process to be successful, when you provide your
+                feedback it's essential that you include your rating (AGA or other), so
+                that I can properly evaluate the perspective from which your caveat has
+                originated. Obviously, if a high Dan tells me that I've got something
+                wrong it will carry more weight than if a double digit Kyu player makes
+                the same claim, but all positive comments will be treated with the
+                respect they deserve.
+            </p>
+            <p>
+                Finally, if you like the book, and especially if you're in its target
+                audience and agree that it has significantly improved your understanding
+                (and rating!), I'd much appreciate your communicating that to me. It's
+                really the only thing that will make the vast amount of time and effort
+                that went into its creation worthwhile.
+            </p>
+
+            <h3> Introduction </h3>
+            <p>
+                This book is not a Go primer nor even a second book, so it presumes that
+                the reader intending to profit from it already has a firm grasp (if
+                perhaps not yet complete mastery) of the basic rules of Go, as well as
+                the fundamentals of life and death, <a
+                    title="An analyzed sequence of plays which theoretically leads to a dynamically equal local result for both sides"
+                    href="./CG.html#Joseki">Joseki</a>, and <a title="The full board Opening"
+                    href="./CG.html#Fuseki">Fuseki</a>.
+            </p>
+            <p>
+                When deciding whether or not it will be worth the time and effort
+                necessary to profit from a Go tutorial such as this, the most relevant
+                criterion employed will almost necessarily be the amount and rapidity of
+                improvement in your rating that you can expect in return. Although it's
+                manifestly impossible to correctly assess this without an in-depth
+                appraisal of your individual intellect and countless other factors, some
+                highly relevant insight into this matter can nevertheless
+                be gained from considering the author's own experience.
+            </p>
+            <p>
+                As originally conceived, this book's objective was to provide players
+                from double digit to perhaps 5 Kyu with crucial insights into the key
+                issues of deciding what, where, and why to play next. But as a result of
+                my own experience, I've just come to realize that the range of players
+                who can find in it the insights that can and will lead to significant
+                improvement in their Go skill (and rating) extends at least to 1D AGA!
+                How and why I've come to that startling conclusion is related next.
+            </p>
+            <p>
+                With the possible rare exception of a few geniuses at the very top of
+                the Go professional ratings, every Go player throughout its extensive
+                history has eventually reached a skill and rating plateau which they
+                never thereafter exceed. For many players,
+                intermediate plateaus also often hold sway for a number of months or
+                even years, but ultimately a final, highest level is reached and then
+                continues until age induced decline takes over, if the player is
+                fortunate enough to live that long. As I've observed during the 60 years
+                of my own Go playing experience, depending on the player these final
+                plateaus range all the way from high double digit Kyu for the least apt
+                (most of whom drop out in frustration),
+                to high ranked 9P. But the one seemingly invariant factor characterizing
+                them all is that once a certain amount of time has elapsed (typically
+                10 years or more), or age has been reached (typically 60-65), the
+                player's then operative plateau is final, and is never thereafter
+                transcended!
+            </p>
+            <p>
+                But what has just happened in my own Go playing life violates both of
+                those seemingly impenetrable time barriers! I'm now 83, suffering from
+                the incurable, invariably fatal Acute Amyloid Leukemia, and have been at
+                a 1D AGA plateau for over 20 years. But despite that, my latest results
+                definitively demonstrate that I'm now no weaker than 3D AGA, and most
+                probably 4D, and, perhaps most startling of all, am unquestionably still
+                improving! When I watch games on IGS between players rated 4D* (= 7D
+                AGA) and above, I now quickly and easily find their exact moves a vast
+                majority of the time! The key that the reader should be aware of is that
+                this ability didn't develop immediately after I had organized the key
+                ideas and translated that into this book, but only reached its current
+                state of fruition after another couple of years of integration of those
+                ideas into my thinking. But as noted, I'm quite old by any standard and
+                consequently undoubtedly more fixed in my thinking than the average
+                player who will read this book, so I have every confidence that those of
+                you who put forth the requisite effort can, as I've done, reap rewards
+                of Go rating beyond your fondest expectations!
+            </p>
+            <p>
+                Now about the book itself.
+            </p>
+            <p>
+                At its most fundamental level, playing Go is heavily dependent upon
+                pattern recognition. As a result, an essential factor in progressing
+                from beginner to intermediate and beyond is perfecting knowledge of the
+                key recurrent local patterns, especially as embodied in <a
+                    title="A Suji which raises the overall efficiency of the player's local (and sometimes global) stones to their highest possible level"
+                    href="./CG.html#TESUJI"> Tesuji </a> and <a
+                    title="An analyzed sequence of plays which theoretically leads to a dynamically equal local result for both sides"
+                    href="./CG.html#Joseki">Joseki</a>.
+                This knowledge constitutes the tactical bedrock upon which Go
+                skill is built, but even its mastery is insufficient to make one a
+                strong player! What's missing is the ability to visualize and then act
+                appropriately on those patterns in actual global board contexts,
+                and that latter capability can only be realized in the service of key
+                strategic ideas like those developed in this book. Preeminent among
+                these key ideas is that fighting is the heart and soul of Go, to the
+                degree that the final outcome of a high proportion of well played games
+                is decided directly or indirectly by big battles. For that reason,
+                mastering the art of fighting is one of the most productive of the
+                essential steps in becoming a strong player.
+            </p>
+            <p>
+                There are two quite different but equally essential aspects of fighting:
+            </p>
+            <ol>
+                <li>
+                    Deciding where, when and why it's appropriate to fight.
+                </li>
+                <li>
+                    Knowing how to fight.
+                </li>
+            </ol>
+            <p>
+                This book focuses on the former. Its basic premise is that a fully
+                developed skill arsenal is unquestionably essential to becoming a strong
+                player, but is insufficient because the full value of that skill can
+                only be realized in the service of deep strategic understanding. It's
+                much like driving a car - technical driving skill is essential for
+                maneuvering safely and efficiently in traffic, but useless for getting
+                where you want to go without an adequate road map!
+            </p>
+            <p>
+                So the focus in this book is on how to identify which fights are
+                necessary and/or productive and which should be avoided, rather than on
+                how to conduct a fight once it's begun. It attempts to do what many
+                believe impossible - to explain this essential aspect of Go to beginners
+                and intermediates so clearly and concisely that they will thereafter
+                think much like strong players, even if they're still far from being
+                able to consistently translate that understanding into fully accurate
+                and incisive play.
+            </p>
+            <p>
+                Of necessity, we do discuss the details of some fights, because it can
+                be very helpful to the reader to see the sort of complications that may
+                result from the implementation of the ideas being studied. But even in
+                those cases, our emphasis is on identifying plausible moves which
+                fulfill the position's overall strategic objectives, rather than on
+                finding those that are absolutely best.
+            </p>
+            <p>
+                Finally, it must be understood that although this book provides a
+                valuable road map for Go fighting in the form of a set of simple but
+                important strategic ideas which are generally (but certainly not always)
+                applicable, those protocols must be viewed as neither absolute
+                prescriptions that must be slavishly followed, nor unerring guides to
+                the absolutely best moves!
+            </p>
+            <p>
+                Despite that important caveat, the book's premise is that mere exposure
+                to these key ideas will provide the greatest increase in any
+                beginner/intermediate's playing strength for the least effort expended!
+                But, as desirable as that is, it's only a good first step. Completing
+                the transformation into a strong player will also take much study and
+                practice of the detailed techniques of Go, as well as lots of
+                over-the-board playing experience - all things well beyond our present
+                purposes, and which are therefore left for your independent effort.
+            </p>
+            <h3>
+                The Use Of Ratings In This Book
+            </h3>
+            <p>
+                Except as otherwise noted, all of the illustrations in this book were
+                taken from actual Dan level games played on leading on-line Go servers,
+                and that means that the stated ranks are all really equivalent to 1- 3
+                stones stronger on the AGA scale! So although 5D may not seem all that
+                impressive, when you realize that it's really equivalent to from 6D-8D
+                AGA and therefore among its highest rated players, that player's
+                judgment about where to play becomes much easier to accept as valid.
+            </p>
+
+            <h3>
+                Acknowledgement
+            </h3>
+            <p>
+                I hereby pay my respects and acknowledge my debt to all of the many
+                wonderful Go teachers and authors who have preceded me.
+            </p>
+            <p>
+                Thanks are hereby offered to the vetters of this book's original
+                incarnation, Ray Kukol 4D, Lisa Maloney, Michael Quintero, Dale Blann,
+                Masaaki Hamaguchi, and my son Randy, who were kind enough to review the
+                manuscript, find errors, and offer some insights into places in which it
+                needed clarification and/or modification. Thanks are also offered to
+                Joanne Phipps 3D and Louis Abronson 5D, who vetted the revised
+                manuscript, found some significant errors, and made key suggestions that
+                helped me reedit it yet again.
+            </p>
+            <p>
+                But in the end, because I'm a Beethoven and not a Mozart, I once more
+                rethought and completely recast everything, so that although much of the
+                book's content is essentially the same as in the earlier versions, the
+                presentation is now completely different. As a consequence,
+                responsibility for what appears here, including any errors, remains
+                uniquely mine .
+            </p>
+            <p>
+                Finally, special thanks are offered to Jakob Meulengracht for his
+                invaluable assistance in preparing the HTML coding of the manuscript
+                that allowed its on line publication.
+            </p>
+            <p>
+                Milt Bradley, July 2008
+            </p>
+        </article>
+    </main>
+    <hr>
+    <footer>
+        <nav>
+            <a>&lt; Prev</a>
+            <a href="index.html">Contents</a>
+            <a href="C1.html">Next &gt;</a>
+        </nav>
+    </footer>
+    <hr>
+</body>
+
+</html>

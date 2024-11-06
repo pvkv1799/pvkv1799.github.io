@@ -1,0 +1,42 @@
+body {
+	font-size: large;
+	font-family: Arial;
+}
+
+p {
+	margin: 0.5em;
+}
+
+h4 {
+	margin: 1em;
+}
+
+nav a {
+	padding: 1em;
+}
+
+figure {
+	display: flex;
+	align-items: center;
+	margin-left: 0;
+}
+
+figcaption {
+	margin-left: 0.5em;
+}
+
+img {
+	border: 1px solid black;
+}
+
+rt {
+	font-size: small;
+}
+
+.keynote-box {
+	display: inline-block;
+	background-color: beige;
+	font-size: larger;
+	border: 2px solid;
+	padding: 0.5em;
+}
