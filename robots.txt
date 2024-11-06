@@ -6,4 +6,5 @@ Disallow: /
 User-agent: AdsBot-Google
 Disallow: /
 
-
+User-Agent: GPTBot
+Disallow: /
